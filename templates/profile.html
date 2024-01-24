@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Strona uzytkownika</title>
+</head>
+<body>
+
+    <a href="/auth/logout">wyloguj</a>
+    <h1>Witaj na stronie banku</h1>
+    <div>
+        <h3>Twoje dane</h3>
+        <p>{{user.id}}</p>
+        <p>{{user.name}}</p>
+        <p>{{user.email}}</p>
+        <p>{{user.account_balance}}</p>
+        <a href="/vunerable">Dane użytkownika</a>
+    </div>
+    <div>
+        <h3>Historia przelewów</h3>
+        <div>
+           <h2>Tranzakcje wykonane:</h2>
+            <div>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tytuł</th>
+                            <th>Kwota</th>
+                            <th>Do</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for transaction in transactions_to %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ transaction.title }}</td>
+                                <td>{{ transaction.amount }}</td>
+                                <td>{{ transaction.nameAndSurnameTo}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>Tranzakcje odebrane:</h2>
+            <div>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tytuł</th>
+                            <th>Kwota</th>
+                            <th>Od</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for transaction in transactions_from %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ transaction.title }}</td>
+                                <td>{{ transaction.amount }}</td>
+                                <td>{{ transaction.nameAndSurnameFrom}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h3>Dokonaj przelewu</h3>
+        <div>
+            <form method="POST" action="/transaction">
+                {{ form.hidden_tag() }}
+
+                <div>
+                    <label for="{{ form.title.id }}">{{ form.title.label }}</label>
+                    {{ form.title }}
+                    {% if form.title.errors %}
+                        <ul>
+                            {% for error in form.title.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+
+                <div>
+                    <label for="{{ form.receiverAccountNumber.id }}">{{ form.receiverAccountNumber.label }}</label>
+                    {{ form.receiverAccountNumber }}
+                    {% if form.receiverAccountNumber.errors %}
+                        <ul>
+                            {% for error in form.receiverAccountNumber.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+
+                <div>
+                    <label for="{{ form.nameAndSurnameTo.id }}">{{ form.nameAndSurnameTo.label }}</label>
+                    {{ form.nameAndSurnameTo }}
+                    {% if form.nameAndSurnameTo.errors %}
+                        <ul>
+                            {% for error in form.nameAndSurnameTo.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+
+                <div>
+                    <label for="{{ form.amount.id }}">{{ form.amount.label }}</label>
+                    {{ form.amount }}
+                    {% if form.amount.errors %}
+                        <ul>
+                            {% for error in form.amount.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+
+                <br>
+                {{ form.submit }}
+
+                <div>
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            <ul>
+                                {% for message in messages %}
+                                    <li style="color: red">{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% endwith %}
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</body>
+</html>

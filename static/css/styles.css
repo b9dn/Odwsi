@@ -1,0 +1,16 @@
+#password-strength {
+    display: none;
+    margin: 5px;
+    background-color: #2E424D;
+    width: 20%;
+    height: 15px;
+    border-radius: 5px;
+}
+
+#power-meter {
+    background-color: #D73F40;
+    width: 1%;
+    height: 100%;
+    border-radius: 5px;
+    transition: 0.5s;
+}

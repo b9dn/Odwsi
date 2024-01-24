@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dane użytkownika</title>
+</head>
+<body>
+    <div>
+        <a href="/profile">wyloguj</a>
+        <h2>Dane użytkownika</h2>
+
+        <div id="user-info">
+            <p>Imię: {{ user.name }}</p>
+            <p>Nazwisko: {{ user.surname }}</p>
+            <p>Email: {{ user.email }}</p>
+            <p>Pesel: {{ user.get_pesel() }}</p>
+            <p>Account Number: {{ user.get_account_number() }}</p>
+            <p>Stan konta: {{ user.account_balance }}</p>
+
+            <button onclick="showSensitiveInfo()">Pokaż/Ukryj wrażliwe informacje</button>
+
+            <div id="sensitive-info" style="display: none;">
+                <p>Numer dokumentu tożsamości: {{ user.get_document_number() }}</p>
+                <p>Numer karty kredytowej: {{ user.get_credit_card_number() }}</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSensitiveInfo() {
+            let sensitive_div = document.getElementById("sensitive-info");
+            let display = sensitive_div.style.display === "block" ? "none" : "block"
+            sensitive_div.style.display = display;
+        }
+    </script>
+</body>
+</html>

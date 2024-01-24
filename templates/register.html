@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+    <title>Register</title>
+</head>
+<body>
+    <a href="index">Powrót do logowania</a>
+    <h2>Formularz Rejestracyjny Banku</h2>
+
+    <form action="/auth/register" method="post">
+        {{ form.hidden_tag() }}
+        <label for="{{ form.name.id }}">{{ form.name.label.text }}</label>
+        {{ form.name() }}<br>
+
+        <label for="{{ form.surname.id }}">{{ form.surname.label.text }}</label>
+        {{ form.surname() }}<br>
+
+        <label for="{{ form.pesel.id }}">{{ form.pesel.label.text }}</label>
+        {{ form.pesel() }}<br>
+
+        <label for="{{ form.email.id }}">{{ form.email.label.text }}</label>
+        {{ form.email() }}<br>
+
+        <label for="{{ form.documentNumber.id }}">{{ form.documentNumber.label.text }}</label>
+        {{ form.documentNumber() }}<br>
+
+        <label for="{{ form.password.id }}">{{ form.password.label.text }}</label>
+        {{ form.password() }}<br>
+        <div id="password-strength">
+            <div id="power-meter"></div>
+        </div>
+
+        <label for="{{ form.confirmPassword.id }}">{{ form.confirmPassword.label.text }}</label>
+        {{ form.confirmPassword() }}<br>
+
+        <label for="{{ form.agreement.id }}">{{ form.agreement.label.text }}</label>
+        {{ form.agreement() }}<br>
+
+        {{ form.submit() }}
+    </form>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p style="color: red">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+
+    <script>
+        let password = document.getElementById('{{ form.password.id }}');
+        let password_strength_container = document.getElementById('password-strength');
+        let power_meter = document.getElementById('power-meter');
+        password.addEventListener('focus', function () {
+            password_strength_container.style.display = 'block';
+        });
+        password.addEventListener('blur', function () {
+            password_strength_container.style.display = 'none';
+        });
+        password.oninput = function () {
+            let point = 0;
+            let value = password.value;
+            let widthPower =
+                ["1%", "25%", "50%", "75%", "100%"];
+            let colorPower =
+                ["#D73F40", "#DC6551", "#F2B84F", "#BDE952", "#3ba62f"];
+
+            if (value.length >= 6) {
+                let arrayTest =
+                    [/[0-9]/, /[a-z]/, /[A-Z]/, /[^0-9a-zA-Z]/];
+                arrayTest.forEach((item) => {
+                    if (item.test(value)) {
+                        point += 1;
+                    }
+                });
+            }
+            power_meter.style.width = widthPower[point];
+            power_meter.style.backgroundColor = colorPower[point];
+        };
+    </script>
+</body>
+</html>
