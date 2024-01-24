@@ -1,6 +1,6 @@
 from flask import render_template, redirect, flash, Blueprint, request, session
 from flask_login import login_required, current_user
-import random, time
+import random
 import db_operations
 from forms import RegistrationForm, TransactionForm, PasswordForm, EmailForm
 from app import limiter

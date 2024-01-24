@@ -122,16 +122,19 @@ def register():
 
             salt = bcrypt.gensalt()
             password = bcrypt.hashpw(bytes(form.password.data, "utf-8"), salt)
-            K = int.from_bytes(password[-4:])
+            K = int.from_bytes(password[-4:], byteorder='big')
             y_secrets = generate_y_secrets(K, form.password.data)
             y_secrets_str = ",".join(map(str, y_secrets))
+
             conn.execute("INSERT INTO passwords (password, K, y_secrets, idUser) VALUES (?, ?, ?, ?)",
                          (password, K, y_secrets_str, user_id))
+
             conn.commit()
         except sqlite3.Error as e:
             flash(e)
             return redirect("/register")
-        except:
+        except Exception as e:
+            print(e)
             flash("Error occurred, try again later")
             return redirect("/register")
         finally:
