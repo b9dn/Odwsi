@@ -40,7 +40,6 @@ def get_user_by_account_number(user_account_number):
 def get_user_password_len(user_id):
     conn = get_connection()
     match = conn.execute("SELECT * FROM passwords WHERE idUser = ?", (user_id,)).fetchone()
-    print(f"Match {match['y_secrets']}")
     conn.close()
     if match is None:
         return None
