@@ -3,6 +3,7 @@ from flask_login import LoginManager
 from flask_wtf import CSRFProtect
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
+from waitress import serve
 import db_operations
 
 
@@ -27,7 +28,7 @@ def create_app():
     from auth import auth
     app.register_blueprint(auth)
 
-    return app.run(debug=True)
+    return serve(app, host="0.0.0.0", port=5000, threads=4)
 
 
 if __name__ == '__main__':
