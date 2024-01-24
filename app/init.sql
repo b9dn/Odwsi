@@ -16,7 +16,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE passwords (
-    password VARCHAR(255), --tylko testowo
+    password VARCHAR(255), --tylko testowo (nieuzywane)
     K INTEGER,
     y_secrets VARCHAR(1024),
     idUser INTEGER REFERENCES users(id)
@@ -31,20 +31,19 @@ CREATE TABLE transactions (
     idUserSource INTEGER REFERENCES users(id),
     idUserDestination INTEGER REFERENCES users(id)
 );
---moglem sie pomylic
---najlepiej stworzyc nowe konto
+--mozliwa pomylka
 INSERT INTO users (name, surname, pesel, email, documentNumber, accountNumber, creditCardNumber, accountBalance)
 VALUES
 --tajneHaslo123
-('Anna', 'Nowak', '89010112345', 'anna.nowak@email.pl', 'c1f33d1edfd2a13f6b6c88827e101d0d;c1ed4b47723c818899c0823980fe5fc3', '61109010140000071219812876', 'c4e64a8ce1c04b35634d8d4ca0c3a3b9;c1b6e7920f471d8f2b9202a0b4989a661caf519e4289f40337ff4f7925b3ef97', 3000.00),
+('Anna', 'Nowak', '89010112345', 'anna.nowak@pl.pl', 'c1f33d1edfd2a13f6b6c88827e101d0d;c1ed4b47723c818899c0823980fe5fc3', '61109010140000071219812876', 'c4e64a8ce1c04b35634d8d4ca0c3a3b9;c1b6e7920f471d8f2b9202a0b4989a661caf519e4289f40337ff4f7925b3ef97', 3000.00),
 --bezpieczneHaslo456
-('Piotr', 'Kowalski', '75020298765', 'piotr.kowalski@email.pl', 'b23cc449c03e950fdb957113c5220c2d;35743f2188357cbdc1f6f80b30474743', '61109010140000071219812877', '968413271c67c380bcc56b514facc957;c2bf56897d3a66056c171e66f7fd26304b8f342b3f875130565099147a78a798', 2500.50),
+('Piotr', 'Kowalski', '75020298765', 'piotr.kowalski@pl.pl', 'b23cc449c03e950fdb957113c5220c2d;35743f2188357cbdc1f6f80b30474743', '61109010140000071219812877', '968413271c67c380bcc56b514facc957;c2bf56897d3a66056c171e66f7fd26304b8f342b3f875130565099147a78a798', 2500.50),
 --hasloMocne789
-('Marta', 'Wiśniewska', '88121234567', 'marta.wisniewska@email.pl', 'f7e40b06186a9325a37fc33429f0967b;aadef35daed67d9f160517e16a00b18d', '61109010140000071219812878', '783f36d3ff1886e6dc6de56d6a087061;99b33446c001d6d7e2b9f7da19df8c5e764f40ac8f1742971e0e4276527b0992', 500.25),
+('Marta', 'Wiśniewska', '88121234567', 'marta.wisniewska@pl.pl', 'f7e40b06186a9325a37fc33429f0967b;aadef35daed67d9f160517e16a00b18d', '61109010140000071219812878', '783f36d3ff1886e6dc6de56d6a087061;99b33446c001d6d7e2b9f7da19df8c5e764f40ac8f1742971e0e4276527b0992', 500.25),
 --ukryteHaslo101
-('Tomasz', 'Kwiatkowski', '95030387654', 'tomasz.kwiatkowski@email.pl', '3c09255f31743e9fda766457c1ed6d05;431f40a805f1310ebf3fef0934803a30', '61109010140000071219812879', 'b3e58c5dcfaf2c9ce41b03bf7093202c;85ec58d78c7a084fa2672ffc8525900f17dbc00d87a9df92be8e01780469b6a1', 800.75),
+('Tomasz', 'Kwiatkowski', '95030387654', 'tomasz.kwiatkowski@pl.pl', '3c09255f31743e9fda766457c1ed6d05;431f40a805f1310ebf3fef0934803a30', '61109010140000071219812879', 'b3e58c5dcfaf2c9ce41b03bf7093202c;85ec58d78c7a084fa2672ffc8525900f17dbc00d87a9df92be8e01780469b6a1', 800.75),
 --silneHaslo202
-('Katarzyna', 'Mazurek', '80040423456', 'katarzyna.mazurek@email.pl', 'da9f5b4118cbd06333548fcad36e3636;e23e0368033a0df45ac3b40a83a43dd5', '61109010140000071219812880', 'b005d40686099d0ca976f8a76dac5680;45c431191fa8337f155b6bd928cb848bdc04a4f5591202c9a5d04bda21aa5b64', 1200.00);
+('Katarzyna', 'Mazurek', '80040423456', 'katarzyna.mazurek@pl.pl', 'da9f5b4118cbd06333548fcad36e3636;e23e0368033a0df45ac3b40a83a43dd5', '61109010140000071219812880', 'b005d40686099d0ca976f8a76dac5680;45c431191fa8337f155b6bd928cb848bdc04a4f5591202c9a5d04bda21aa5b64', 1200.00);
 
 INSERT INTO passwords (password, K, y_secrets, idUser)
 VALUES
