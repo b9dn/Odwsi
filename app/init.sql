@@ -31,8 +31,8 @@ CREATE TABLE transactions (
     idUserSource INTEGER REFERENCES users(id),
     idUserDestination INTEGER REFERENCES users(id)
 );
---mozliwa pomylka
 INSERT INTO users (name, surname, pesel, email, documentNumber, accountNumber, creditCardNumber, accountBalance)
+
 VALUES
 --tajneHaslo123
 ('Anna', 'Nowak', '89010112345', 'anna.nowak@pl.pl', 'c1f33d1edfd2a13f6b6c88827e101d0d;c1ed4b47723c818899c0823980fe5fc3', '61109010140000071219812876', 'c4e64a8ce1c04b35634d8d4ca0c3a3b9;c1b6e7920f471d8f2b9202a0b4989a661caf519e4289f40337ff4f7925b3ef97', 3000.00),
