@@ -15,18 +15,6 @@ This project is a minimalistic web-based banking application built using Flask (
 
 ## Screenshots
 
-[//]: # (![Screenshot 1]&#40;imgs/register.jpg&#41;)
-
-[//]: # (![Screenshot 2]&#40;imgs/login.jpg&#41;)
-
-[//]: # (![Screenshot 3]&#40;imgs/profile.jpg&#41;)
-
-[//]: # (![Screenshot 4]&#40;imgs/transaction.jpg&#41;)
-
-[//]: # (![Screenshot 5]&#40;imgs/vunerable.jpg&#41;)
-
-## Screenshots
-
 |                                     |                                       |
 |-------------------------------------|---------------------------------------|
 | ![Screenshot 1](imgs/register.jpg)  | ![Screenshot 2](imgs/login.jpg)       |
